@@ -1,0 +1,30 @@
+{
+  "$id": "https://example.com/user.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "metadata available on every object",
+  "type": "object",
+  "required": [
+    "createdBy_id", 
+    "modifiedBy_id",
+    "createdAt",
+    "modifiedAt"
+  ],
+  "properties": {
+    "createdBy_id": {
+      "type": "string",
+      "link":"user"
+    },
+    "modifiedBy_id": {
+      "type": "string",
+      "link":"user"
+    },
+    "createdAt": {
+      "type": "string",
+      "format":"date"
+    },
+    "modifiedAt": {
+      "type": "string",
+      "format":"date"
+    }
+  }
+}

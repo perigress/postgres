@@ -1,0 +1,22 @@
+
+{
+  "$id": "https://example.com/user.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "A direct message between users",
+  "type": "object",
+  "required": ["handle", "email"],
+  "protected": ["sender_id", "receiver_id"],
+  "properties": {
+    "sender_id": {
+      "type": "string",
+      "link": "user"
+    },
+    "receiver_id": {
+      "type": "string",
+      "link": "user"
+    },
+    "message": {
+      "type": "string"
+    }
+  }
+}

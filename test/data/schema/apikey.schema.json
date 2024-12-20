@@ -1,0 +1,23 @@
+
+{
+  "$id": "https://example.com/user.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "A representation of a web user",
+  "type": "object",
+  "required": ["name", "owner_id", "key", "secret"],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "owner_id": {
+      "type": "string",
+      "link": "user"
+    },
+    "key": {
+      "type": "string"
+    },
+    "secret": {
+      "type": "string"
+    }
+  }
+}

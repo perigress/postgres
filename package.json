@@ -79,6 +79,7 @@
         "babel-plugin-search-and-replace": "^1.1.1",
         "babel-plugin-transform-import-meta": "^2.2.0",
         "chai": "^4.3.7",
+        "cors": "^2.8.5",
         "eslint": "^8.43.0",
         "husky": "^8.0.3",
         "mocha": "^10.2.0"
@@ -86,7 +87,7 @@
     "scripts": {
         "lint": "eslint src/*.mjs test/*.mjs",
         "test": "npm run import-test; npm run browser-test; npm run require-test",
-        "import-test": "mocha test/test.mjs",
+        "import-test": "cross-env TEST_PG_USER=khrome TEST_PG_PASSWORD= moka test/test.mjs",
         "require-test": "mocha test/test.cjs",
         "build-commonjs": "./node_modules/@environment-safe/commonjs-builder/bin/build.mjs",
         "local-server": "open 'http://localhost:8085/' ; npx http-server -p 8085",
@@ -102,6 +103,11 @@
         "prepare": "husky install"
     },
     "dependencies": {
-        "browser-or-node": "^2.1.1"
+        "@environment-safe/regular-expressions": "^0.0.1",
+        "@perigress/core": "^0.0.2",
+        "@perigress/khipu": "^0.0.3",
+        "browser-or-node": "^2.1.1",
+        "cross-env": "^7.0.3",
+        "pg": "^8.13.1"
     }
 }
