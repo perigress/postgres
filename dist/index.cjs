@@ -60,8 +60,11 @@ class PostgresSource extends _core.Perigress.Source {
     return await new Promise(async (resolve, reject) => {
       const statements = await this.queryBuilder.buildCreateStatement(typeDefinition, [object]);
       const singleStatement = statements[0];
+      const sql = singleStatement.sql + ' RETURNING id';
       //$1::text
-      this.client.query(singleStatement.sql, singleStatement.values, async (err, res) => {
+      //todo: pluggable id
+      let copy = null;
+      this.client.query(sql, singleStatement.values, async (err, res) => {
         if (err) {
           const handled = await handleAutoInit(err, this.queryBuilder, this.client, typeDefinition, this.queryOptions.autoinitialize, noRecurse, async () => {
             //recurse once for autoincrement
@@ -70,8 +73,12 @@ class PostgresSource extends _core.Perigress.Source {
           if (!handled) {
             reject(err);
           }
+        } else {
+          const row = res.rows.pop();
+          copy = JSON.parse(JSON.stringify(object));
+          copy.id = row.id;
         }
-        resolve(res);
+        resolve(copy);
       });
     });
   }

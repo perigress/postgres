@@ -23,6 +23,7 @@ export class TestFixture extends Fixture{
             id:{ //make default (uses uuids)
                 field: 'id',
                 postfix: '_id',
+                format: 'uuid',
                 type: 'string'
             },
             audit: {
